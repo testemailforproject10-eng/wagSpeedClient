@@ -153,8 +153,8 @@ export default function PrivacyPage() {
               </ul>
               <p className="font-body-md text-on-surface-variant leading-relaxed mt-4">
                 To exercise any of these rights, email us at{' '}
-                <a href="mailto:hello@wagspeed.com" className="text-primary underline underline-offset-4 hover:opacity-80 transition-opacity">
-                  hello@wagspeed.com
+                <a href="mailto:jesus.fernandez@wsu.edu" className="text-primary underline underline-offset-4 hover:opacity-80 transition-opacity">
+                  jesus.fernandez@wsu.edu
                 </a>.
               </p>
             </section>
@@ -183,8 +183,8 @@ export default function PrivacyPage() {
               </h2>
               <p className="font-body-md text-on-surface-variant leading-relaxed">
                 Questions about this policy? Reach us at{' '}
-                <a href="mailto:hello@wagspeed.com" className="text-primary underline underline-offset-4 hover:opacity-80 transition-opacity">
-                  hello@wagspeed.com
+                <a href="mailto:jesus.fernandez@wsu.edu" className="text-primary underline underline-offset-4 hover:opacity-80 transition-opacity">
+                  jesus.fernandez@wsu.edu
                 </a>.
               </p>
             </section>

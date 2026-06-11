@@ -113,8 +113,8 @@ export default function TermsPage() {
               </h2>
               <p className="font-body-md text-on-surface-variant leading-relaxed">
                 You may remove yourself from the waitlist at any time by emailing{' '}
-                <a href="mailto:hello@wagspeed.com" className="text-primary underline underline-offset-4 hover:opacity-80 transition-opacity">
-                  hello@wagspeed.com
+                <a href="mailto:jesus.fernandez@wsu.edu" className="text-primary underline underline-offset-4 hover:opacity-80 transition-opacity">
+                  jesus.fernandez@wsu.edu
                 </a>{' '}
                 with the subject &ldquo;Remove me from the waitlist.&rdquo; We will process your request within 5 business days. WagSpeed also reserves the right to remove entries that contain false, duplicate, or abusive information.
               </p>
@@ -171,8 +171,8 @@ export default function TermsPage() {
               </h2>
               <p className="font-body-md text-on-surface-variant leading-relaxed">
                 Questions about these terms? Email us at{' '}
-                <a href="mailto:hello@wagspeed.com" className="text-primary underline underline-offset-4 hover:opacity-80 transition-opacity">
-                  hello@wagspeed.com
+                <a href="mailto:jesus.fernandez@wsu.edu" className="text-primary underline underline-offset-4 hover:opacity-80 transition-opacity">
+                  jesus.fernandez@wsu.edu
                 </a>.
               </p>
             </section>
