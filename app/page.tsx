@@ -1,20 +1,5 @@
-import { createClient } from '@/lib/supabase'
 import WaitlistForm from '@/components/WaitlistForm'
 import WhyItWorks from '@/components/WhyItWorks'
-
-async function getWaitlistCount(): Promise<number> {
-  try {
-    const supabase = createClient()
-    const { count } = await supabase
-      .from('waitlist')
-      .select('*', { count: 'exact', head: true })
-    return count ?? 0
-  } catch {
-    return 0
-  }
-}
-
-export const revalidate = 60
 
 const STATS = [
   { icon: 'speed',             label: 'Pace:',    value: 'Custom'     },
@@ -23,9 +8,7 @@ const STATS = [
   { icon: 'show_chart',        label: 'Metrics:', value: 'Tracked'    },
 ]
 
-export default async function HomePage() {
-  const initialCount = await getWaitlistCount()
-
+export default function HomePage() {
   return (
     <div className="bg-background min-h-[100dvh] flex flex-col overflow-x-hidden">
 
@@ -127,7 +110,7 @@ export default async function HomePage() {
 
             {/* Right — form */}
             <div className="animate-fade-up stagger-4" id="waitlist-form">
-              <WaitlistForm initialCount={initialCount} />
+              <WaitlistForm />
             </div>
 
           </div>
@@ -210,9 +193,8 @@ export default async function HomePage() {
           </div>
           <div className="flex flex-col md:items-end justify-between gap-6">
             <nav className="flex flex-wrap gap-4 md:justify-end">
-              <a href="#" className="font-label-caps text-label-caps text-on-surface-variant uppercase hover:text-primary transition-colors duration-300">Instagram</a>
-              <a href="#" className="font-label-caps text-label-caps text-on-surface-variant uppercase hover:text-primary transition-colors duration-300">Privacy Policy</a>
-              <a href="#" className="font-label-caps text-label-caps text-on-surface-variant uppercase hover:text-primary transition-colors duration-300">Terms of Service</a>
+              <a href="/privacy" className="font-label-caps text-label-caps text-on-surface-variant uppercase hover:text-primary transition-colors duration-300">Privacy Policy</a>
+              <a href="/terms" className="font-label-caps text-label-caps text-on-surface-variant uppercase hover:text-primary transition-colors duration-300">Terms of Service</a>
             </nav>
             <span className="font-label-caps text-label-caps text-outline uppercase border border-outline px-2 py-1 self-start md:self-end">
               Launching: Tri-Cities, WA

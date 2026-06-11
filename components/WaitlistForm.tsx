@@ -5,34 +5,39 @@ import { useState, useRef, useCallback } from 'react'
 type FormStatus = 'idle' | 'loading' | 'success' | 'error' | 'duplicate'
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+const PHONE_REGEX = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/
 
-interface WaitlistFormProps {
-  initialCount: number
-}
-
-export default function WaitlistForm({ initialCount }: WaitlistFormProps) {
+export default function WaitlistForm() {
+  const [name, setName]         = useState('')
   const [email, setEmail]       = useState('')
+  const [phone, setPhone]       = useState('')
   const [dogCount, setDogCount] = useState('')
   const [city, setCity]         = useState('')
   const [status, setStatus]     = useState<FormStatus>('idle')
   const [errorMessage, setErrorMessage] = useState('')
-  const [count, setCount]       = useState(initialCount)
+  const [count, setCount]       = useState(0)
   const [touched, setTouched]   = useState(false)
-  const inputRef = useRef<HTMLInputElement>(null)
 
-  const isValidEmail   = EMAIL_REGEX.test(email)
+  const nameRef  = useRef<HTMLInputElement>(null)
+  const emailRef = useRef<HTMLInputElement>(null)
+
+  const isValidEmail = EMAIL_REGEX.test(email)
+  const isValidPhone = phone === '' || PHONE_REGEX.test(phone)
+
+  const showNameError  = touched && !name.trim()
   const showEmailError = touched && email.length > 0 && !isValidEmail
+  const showPhoneError = touched && phone.length > 0 && !isValidPhone
   const showDogError   = touched && !dogCount
   const showCityError  = touched && !city
-  const spotsLeft      = Math.max(0, 100 - count)
 
   const handleSubmit = useCallback(
     async (e: React.FormEvent) => {
       e.preventDefault()
       setTouched(true)
 
-      if (!isValidEmail || !dogCount || !city) {
-        if (!isValidEmail) inputRef.current?.focus()
+      if (!name.trim() || !isValidEmail || !isValidPhone || !dogCount || !city) {
+        if (!name.trim()) nameRef.current?.focus()
+        else if (!isValidEmail) emailRef.current?.focus()
         return
       }
 
@@ -43,7 +48,13 @@ export default function WaitlistForm({ initialCount }: WaitlistFormProps) {
         const res = await fetch('/api/waitlist', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email, dog_count: dogCount, city }),
+          body: JSON.stringify({
+            name:      name.trim(),
+            email,
+            phone:     phone.trim() || null,
+            dog_count: dogCount,
+            city,
+          }),
         })
 
         const data = await res.json()
@@ -65,23 +76,23 @@ export default function WaitlistForm({ initialCount }: WaitlistFormProps) {
         setErrorMessage('Network error. Check your connection and try again.')
       }
     },
-    [email, dogCount, city, isValidEmail]
+    [name, email, phone, dogCount, city, isValidEmail, isValidPhone]
   )
 
   return (
     <div className="glass-card-wrapper">
     <div className="glass-card">
 
-      {/* Card header — centered title + stats line */}
-      <div className="flex flex-col items-center text-center px-7 pt-9 pb-7 gap-2.5 border-b border-white/[0.08]">
+      {/* Card header */}
+      <div className="flex flex-col items-center text-center px-7 pt-9 pb-7 gap-2 border-b border-white/[0.08]">
         <h2
           className="font-headline-xl text-on-surface uppercase"
           style={{ fontSize: '30px', letterSpacing: '-0.01em', lineHeight: 1.05, fontWeight: 700 }}
         >
           Join the Waitlist
         </h2>
-        <p className="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest ticker-animation">
-          {spotsLeft} Spots Left&nbsp;&ndash;&nbsp;{count.toLocaleString()} Waiting
+        <p className="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">
+          Tri-Cities, WA &mdash; First in line ships first
         </p>
       </div>
 
@@ -141,11 +152,36 @@ export default function WaitlistForm({ initialCount }: WaitlistFormProps) {
           className="flex flex-col gap-5 px-7 py-7"
         >
 
+          {/* Name */}
+          <div className="flex flex-col gap-1.5">
+            <label htmlFor="name" className="sr-only">Full Name</label>
+            <input
+              ref={nameRef}
+              id="name"
+              type="text"
+              name="name"
+              autoComplete="name"
+              placeholder="Full Name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              onBlur={() => setTouched(true)}
+              disabled={status === 'loading'}
+              aria-invalid={showNameError}
+              aria-describedby={showNameError ? 'name-error' : undefined}
+              className="industrial-input"
+            />
+            {showNameError && (
+              <p id="name-error" role="alert" className="font-label-caps text-label-caps text-error">
+                Name is required.
+              </p>
+            )}
+          </div>
+
           {/* Email */}
           <div className="flex flex-col gap-1.5">
             <label htmlFor="email" className="sr-only">Email Address</label>
             <input
-              ref={inputRef}
+              ref={emailRef}
               id="email"
               type="email"
               name="email"
@@ -162,6 +198,30 @@ export default function WaitlistForm({ initialCount }: WaitlistFormProps) {
             {showEmailError && (
               <p id="email-error" role="alert" className="font-label-caps text-label-caps text-error">
                 Enter a valid email address.
+              </p>
+            )}
+          </div>
+
+          {/* Phone */}
+          <div className="flex flex-col gap-1.5">
+            <label htmlFor="phone" className="sr-only">Phone Number</label>
+            <input
+              id="phone"
+              type="tel"
+              name="phone"
+              autoComplete="tel"
+              placeholder="Phone Number (optional)"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              onBlur={() => setTouched(true)}
+              disabled={status === 'loading'}
+              aria-invalid={showPhoneError}
+              aria-describedby={showPhoneError ? 'phone-error' : undefined}
+              className="industrial-input"
+            />
+            {showPhoneError && (
+              <p id="phone-error" role="alert" className="font-label-caps text-label-caps text-error">
+                Enter a valid phone number.
               </p>
             )}
           </div>
@@ -210,7 +270,7 @@ export default function WaitlistForm({ initialCount }: WaitlistFormProps) {
             )}
           </div>
 
-          {/* Submit — white CTA */}
+          {/* Submit */}
           <button
             type="submit"
             disabled={status === 'loading'}
