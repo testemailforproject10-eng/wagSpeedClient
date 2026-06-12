@@ -1,3 +1,5 @@
+import Reveal from '@/components/Reveal'
+
 const pillars = [
   {
     num: '01',
@@ -22,18 +24,20 @@ export default function WhyItWorks() {
       <div className="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop py-24 md:py-32">
 
         {/* Section label */}
-        <div className="inline-flex items-center gap-2 mb-12">
-          <span className="w-1.5 h-1.5 bg-primary rounded-full animate-pulse-dot flex-shrink-0" />
-          <span className="font-label-caps text-label-caps text-primary uppercase tracking-widest">
-            The Science
-          </span>
-        </div>
+        <Reveal className="mb-12">
+          <div className="inline-flex items-center gap-2">
+            <span className="w-1.5 h-1.5 bg-primary rounded-full animate-pulse-dot flex-shrink-0" />
+            <span className="font-label-caps text-label-caps text-primary uppercase tracking-widest">
+              The Science
+            </span>
+          </div>
+        </Reveal>
 
         {/* ── Opening: asymmetric split ────────────────────── */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20 items-start mb-24">
 
           {/* Left: headline + stat block */}
-          <div className="lg:col-span-5 flex flex-col gap-10">
+          <Reveal className="lg:col-span-5 flex flex-col gap-10">
             <h2
               className="font-headline-xl text-on-surface uppercase"
               style={{ fontSize: 'clamp(38px, 4vw, 52px)', lineHeight: 0.95, letterSpacing: '-0.02em', fontWeight: 700 }}
@@ -56,10 +60,10 @@ export default function WhyItWorks() {
                 Source: Peer-reviewed veterinary studies
               </span>
             </div>
-          </div>
+          </Reveal>
 
           {/* Right: body copy */}
-          <div className="lg:col-span-7 flex flex-col gap-5 lg:pt-1">
+          <Reveal delay={140} className="lg:col-span-7 flex flex-col gap-5 lg:pt-1">
             <p className="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
               Most dogs aren&rsquo;t getting enough real exercise. A walk around the block gets them moving, but it doesn&rsquo;t wear them out. The kind of exercise that actually changes behavior &mdash; calmer at home, less reactive on the leash, deeper sleep at night &mdash; requires sustained effort at the right intensity for long enough to matter.
             </p>
@@ -69,15 +73,16 @@ export default function WhyItWorks() {
             <p className="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
               WagSpeed sessions are built around exactly this kind of exercise. Consistent pace, full 30 minutes, and a load that grows with your dog&rsquo;s fitness over time. Not a stroll &mdash; a workout.
             </p>
-          </div>
+          </Reveal>
 
         </div>
 
         {/* ── Three pillars — editorial rows ────────────────── */}
         <div className="flex flex-col divide-y divide-outline-variant border-t border-b border-outline-variant">
-          {pillars.map(({ num, title, body }) => (
-            <div
+          {pillars.map(({ num, title, body }, i) => (
+            <Reveal
               key={num}
+              delay={i * 100}
               className="group grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 py-8 md:py-10 transition-colors duration-300"
             >
               <div className="md:col-span-1">
@@ -98,7 +103,7 @@ export default function WhyItWorks() {
                   {body}
                 </p>
               </div>
-            </div>
+            </Reveal>
           ))}
         </div>
 

@@ -6,4 +6,4 @@ export { createServerClient } from './server'
 export { createBrowserClient } from './client'
 
 // Types
-export type { Database, WaitlistRow, WaitlistInsert } from './types'
+export type { Database, WaitlistRow, WaitlistInsert, ContactMessageRow, ContactMessageInsert } from './types'

@@ -92,7 +92,7 @@ export default function WaitlistForm() {
           Join the Waitlist
         </h2>
         <p className="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">
-          Tri-Cities, WA &mdash; First in line ships first
+          Tri-Cities, WA &mdash; First in line trains first
         </p>
       </div>
 

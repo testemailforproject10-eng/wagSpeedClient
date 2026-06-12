@@ -37,6 +37,31 @@ export interface Database {
         }
         Relationships: []
       }
+      contact_messages: {
+        Row: {
+          id: number
+          name: string
+          email: string
+          phone: string | null
+          message: string
+          created_at: string
+        }
+        Insert: {
+          name: string
+          email: string
+          phone?: string | null
+          message: string
+          created_at?: string
+        }
+        Update: {
+          name?: string
+          email?: string
+          phone?: string | null
+          message?: string
+          created_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: Record<string, never>
     Functions: Record<string, never>
@@ -46,3 +71,6 @@ export interface Database {
 
 export type WaitlistRow    = Database['public']['Tables']['waitlist']['Row']
 export type WaitlistInsert = Database['public']['Tables']['waitlist']['Insert']
+
+export type ContactMessageRow    = Database['public']['Tables']['contact_messages']['Row']
+export type ContactMessageInsert = Database['public']['Tables']['contact_messages']['Insert']

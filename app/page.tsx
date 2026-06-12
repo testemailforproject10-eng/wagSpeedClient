@@ -1,11 +1,33 @@
 import WaitlistForm from '@/components/WaitlistForm'
 import WhyItWorks from '@/components/WhyItWorks'
+import Reveal from '@/components/Reveal'
+
+const STEPS = [
+  {
+    num: '01',
+    title: 'Book Online',
+    body: 'Schedule a session in seconds. Pick the time that works — we take it from there.',
+    cell: 'md:pr-12 pb-10 md:pb-0 border-b border-outline-variant md:border-b-0',
+  },
+  {
+    num: '02',
+    title: 'We Drive to You',
+    body: 'Our climate-controlled van parks in your driveway. No drop-off, no commute.',
+    cell: 'md:px-12 py-10 md:py-0 border-b border-outline-variant md:border-b-0',
+  },
+  {
+    num: '03',
+    title: 'Your Dog Trains',
+    body: 'A certified trainer guides a custom treadmill session. Real output. Real metrics.',
+    cell: 'pt-10 md:pt-0 md:pl-12',
+  },
+]
 
 const STATS = [
-  { icon: 'speed',             label: 'Pace:',    value: 'Custom'     },
-  { icon: 'device_thermostat', label: 'Climate:', value: 'Controlled' },
-  { icon: 'timer',             label: 'Session:', value: '30 Min'     },
-  { icon: 'show_chart',        label: 'Metrics:', value: 'Tracked'    },
+  { icon: 'speed',             label: 'Pace',    value: 'Custom'     },
+  { icon: 'device_thermostat', label: 'Climate', value: 'Controlled' },
+  { icon: 'timer',             label: 'Session', value: '30 Min'     },
+  { icon: 'show_chart',        label: 'Metrics', value: 'Tracked'    },
 ]
 
 export default function HomePage() {
@@ -13,7 +35,7 @@ export default function HomePage() {
     <div className="bg-background min-h-[100dvh] flex flex-col overflow-x-hidden">
 
       {/* ── Nav ──────────────────────────────────────────── */}
-      <header className="fixed top-0 w-full z-50 bg-surface-container-lowest border-b border-white/[0.06]">
+      <header className="fixed top-0 w-full z-50 bg-background/70 backdrop-blur-md border-b border-white/[0.06]">
         <div className="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-[18px] max-w-7xl mx-auto">
           <div className="flex items-center">
             <img src="/favicon.svg" alt="WagSpeed logo" className="h-6 w-6 mr-2" />
@@ -24,12 +46,20 @@ export default function HomePage() {
               WAGSPEED
             </span>
           </div>
-          <a
-            href="#waitlist-form"
-            className="submit-btn bg-white text-[#0d0f12] font-label-caps text-label-caps uppercase px-6 py-[11px] hover:bg-white/90 flex items-center gap-2 rounded-sm font-bold"
-          >
-            Join Waitlist
-          </a>
+          <nav className="flex items-center gap-6">
+            <a
+              href="/contact"
+              className="hidden sm:inline-flex font-label-caps text-label-caps text-on-surface-variant uppercase hover:text-primary transition-colors duration-300"
+            >
+              Contact
+            </a>
+            <a
+              href="#waitlist-form"
+              className="submit-btn bg-white text-[#0d0f12] font-label-caps text-label-caps uppercase px-6 py-[11px] hover:bg-white/90 flex items-center gap-2 rounded-xl font-bold"
+            >
+              Join Waitlist
+            </a>
+          </nav>
         </div>
       </header>
 
@@ -44,10 +74,10 @@ export default function HomePage() {
               src="/van-dogs.jpg"
               alt="Dogs running on a professional treadmill inside the WagSpeed van"
               className="absolute inset-0 w-full h-full object-cover hero-image-filter"
-              style={{ objectPosition: '65% center', background: 'black', opacity: 0.3}}
+              style={{ objectPosition: '65% center', background: 'black', opacity: 0.45 }}
             />
             {/* Left vignette — dark behind headline text */}
-            <div className="absolute inset-0 bg-gradient-to-r from-background/70 via-background/30 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-background/85 via-background/35 to-transparent" />
             {/* Right vignette — heavily darkens behind the glass form so frosted effect reads correctly */}
             <div className="absolute inset-0 bg-gradient-to-l from-background/80 via-background/20 to-transparent" />
             {/* Bottom fade into next section */}
@@ -58,13 +88,13 @@ export default function HomePage() {
           <div className="relative z-20 w-full pt-24 pb-16 grid grid-cols-1 lg:grid-cols-[1fr_420px] gap-10 lg:gap-12 items-center">
 
             {/* Left — headline + body + stats */}
-            <div className="flex flex-col gap-7">
+            <div className="flex flex-col gap-7 min-w-0">
 
               {/* Massive display headline */}
               <h1
                 className="animate-fade-up stagger-1 font-headline-xl text-on-surface uppercase"
                 style={{
-                  fontSize:      'clamp(72px, 8.5vw, 118px)',
+                  fontSize:      'clamp(44px, 10vw, 118px)',
                   lineHeight:    0.88,
                   letterSpacing: '-0.03em',
                   fontWeight:    700,
@@ -85,7 +115,7 @@ export default function HomePage() {
                   <div key={icon} className="flex items-center gap-3">
                     <span
                       className="material-symbols-outlined text-white flex-shrink-0"
-                      style={{ fontSize: '40px', fontVariationSettings: "'FILL' 0, 'wght' 200" }}
+                      style={{ fontSize: 'clamp(32px, 3vw, 40px)', fontVariationSettings: "'FILL' 0, 'wght' 200" }}
                     >
                       {icon}
                     </span>
@@ -109,26 +139,10 @@ export default function HomePage() {
             </div>
 
             {/* Right — form */}
-            <div className="animate-fade-up stagger-4" id="waitlist-form">
+            <div className="animate-fade-up stagger-4 min-w-0 scroll-mt-24" id="waitlist-form">
               <WaitlistForm />
             </div>
 
-          </div>
-
-          {/* Scroll indicator — bottom center, hidden on mobile where form stacks below stats */}
-          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 hidden lg:flex flex-col items-center gap-1.5 pointer-events-none">
-            <span
-              className="font-label-caps text-on-surface-variant uppercase opacity-40"
-              style={{ fontSize: '9px', letterSpacing: '0.18em', fontFamily: 'var(--font-hanken-grotesk)', fontWeight: 700 }}
-            >
-              Scroll
-            </span>
-            <span
-              className="material-symbols-outlined text-on-surface-variant opacity-45 animate-scroll-bounce"
-              style={{ fontSize: '22px' }}
-            >
-              keyboard_arrow_down
-            </span>
           </div>
 
         </section>
@@ -136,40 +150,77 @@ export default function HomePage() {
         {/* ── How It Works ──────────────────────────────────── */}
         <section className="w-full border-t border-b border-outline-variant bg-surface-container-lowest">
           <div className="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop py-16 md:py-20">
+            <Reveal className="mb-12 flex flex-col gap-5">
+              <div className="inline-flex items-center gap-2">
+                <span className="w-1.5 h-1.5 bg-primary rounded-full animate-pulse-dot flex-shrink-0" />
+                <span className="font-label-caps text-label-caps text-primary uppercase tracking-widest">
+                  How It Works
+                </span>
+              </div>
+              <h2
+                className="font-headline-xl text-on-surface uppercase max-w-2xl"
+                style={{ fontSize: 'clamp(32px, 3.5vw, 44px)', lineHeight: 0.95, letterSpacing: '-0.02em', fontWeight: 700 }}
+              >
+                From your driveway to done in 30 minutes.
+              </h2>
+            </Reveal>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-0 md:divide-x md:divide-outline-variant">
-
-              <div className="flex flex-col gap-4 md:pr-12 pb-10 md:pb-0 border-b border-outline-variant md:border-b-0">
-                <div className="w-11 h-11 rounded-full border border-outline-variant flex items-center justify-center bg-surface-container">
-                  <span className="font-label-caps text-label-caps text-on-surface-variant" style={{ fontSize: '11px', letterSpacing: '0.08em' }}>01</span>
-                </div>
-                <h3 className="font-headline-lg-mobile text-headline-lg-mobile text-on-surface uppercase">Book Online</h3>
-                <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed">
-                  Schedule a session in seconds. Pick the time that works — we take it from there.
-                </p>
-              </div>
-
-              <div className="flex flex-col gap-4 md:px-12 py-10 md:py-0 border-b border-outline-variant md:border-b-0">
-                <div className="w-11 h-11 rounded-full border border-outline-variant flex items-center justify-center bg-surface-container">
-                  <span className="font-label-caps text-label-caps text-on-surface-variant" style={{ fontSize: '11px', letterSpacing: '0.08em' }}>02</span>
-                </div>
-                <h3 className="font-headline-lg-mobile text-headline-lg-mobile text-on-surface uppercase">We Drive to You</h3>
-                <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed">
-                  Our climate-controlled van parks in your driveway. No drop-off, no commute.
-                </p>
-              </div>
-
-              <div className="flex flex-col gap-4 pt-10 md:pt-0 md:pl-12">
-                <div className="w-11 h-11 rounded-full border border-outline-variant flex items-center justify-center bg-surface-container">
-                  <span className="font-label-caps text-label-caps text-on-surface-variant" style={{ fontSize: '11px', letterSpacing: '0.08em' }}>03</span>
-                </div>
-                <h3 className="font-headline-lg-mobile text-headline-lg-mobile text-on-surface uppercase">Your Dog Trains</h3>
-                <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed">
-                  A certified trainer guides a custom treadmill session. Real output. Real metrics.
-                </p>
-              </div>
-
+              {STEPS.map(({ num, title, body, cell }, i) => (
+                <Reveal key={num} delay={i * 120} className={cell}>
+                  <div className="group flex flex-col gap-4">
+                    <div className="w-11 h-11 rounded-full border border-outline-variant flex items-center justify-center bg-surface-container transition-colors duration-300 group-hover:border-primary-fixed-dim/40">
+                      <span className="font-label-caps text-label-caps text-on-surface-variant" style={{ fontSize: '11px', letterSpacing: '0.08em' }}>{num}</span>
+                    </div>
+                    <h3 className="font-headline-lg-mobile text-headline-lg-mobile text-on-surface uppercase">{title}</h3>
+                    <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                      {body}
+                    </p>
+                  </div>
+                </Reveal>
+              ))}
             </div>
           </div>
+        </section>
+
+        {/* ── Inside the Van ────────────────────────────────── */}
+        <section className="w-full bg-background">
+          <div className="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop pt-16 md:pt-24 pb-12 md:pb-16">
+            <Reveal className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-20 items-end">
+              <div className="lg:col-span-6 flex flex-col gap-5">
+                <div className="inline-flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 bg-primary rounded-full animate-pulse-dot flex-shrink-0" />
+                  <span className="font-label-caps text-label-caps text-primary uppercase tracking-widest">
+                    Inside the Van
+                  </span>
+                </div>
+                <h2
+                  className="font-headline-xl text-on-surface uppercase"
+                  style={{ fontSize: 'clamp(32px, 3.5vw, 44px)', lineHeight: 0.95, letterSpacing: '-0.02em', fontWeight: 700 }}
+                >
+                  The whole gym, parked in your driveway.
+                </h2>
+              </div>
+              <div className="lg:col-span-6">
+                <p className="font-body-lg text-body-lg text-on-surface-variant leading-relaxed max-w-[52ch]">
+                  A professional treadmill, climate control, and a certified trainer on board.
+                  Your dog walks out the front door and straight into a workout.
+                </p>
+              </div>
+            </Reveal>
+          </div>
+
+          {/* Full-bleed photo — the one place the image gets seen clean */}
+          <Reveal>
+            <div className="media-reveal relative w-full overflow-hidden aspect-[5/4] md:aspect-auto md:h-[clamp(340px,62vh,660px)]">
+              <img
+                src="/van-dogs.jpg"
+                alt="Two dogs running on the professional treadmill inside the climate-controlled WagSpeed van"
+                loading="lazy"
+                className="absolute inset-0 w-full h-full object-cover object-center md:object-[65%_center]"
+                style={{ filter: 'saturate(0.95) contrast(1.04)' }}
+              />
+            </div>
+          </Reveal>
         </section>
 
         {/* ── Why It Works ──────────────────────────────────── */}
@@ -188,11 +239,12 @@ export default function HomePage() {
               </span>
             </div>
             <p className="font-body-md text-body-md text-on-surface-variant max-w-sm">
-              &copy; {new Date().getFullYear()} WagSpeed Performance. Engineered for canines.
+              &copy; {new Date().getFullYear()} WagSpeed Performance. Built for dogs who love to run.
             </p>
           </div>
           <div className="flex flex-col md:items-end justify-between gap-6">
             <nav className="flex flex-wrap gap-4 md:justify-end">
+              <a href="/contact" className="font-label-caps text-label-caps text-on-surface-variant uppercase hover:text-primary transition-colors duration-300">Contact</a>
               <a href="/privacy" className="font-label-caps text-label-caps text-on-surface-variant uppercase hover:text-primary transition-colors duration-300">Privacy Policy</a>
               <a href="/terms" className="font-label-caps text-label-caps text-on-surface-variant uppercase hover:text-primary transition-colors duration-300">Terms of Service</a>
             </nav>
