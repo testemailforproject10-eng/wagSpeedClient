@@ -2,8 +2,9 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Terms of Service | WagSpeed',
+  title: 'Terms of Service',
   description: 'Terms and conditions for using WagSpeed\'s waitlist and services.',
+  alternates: { canonical: '/terms' },
   robots: { index: true, follow: true },
 }
 

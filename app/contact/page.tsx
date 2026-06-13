@@ -3,8 +3,18 @@ import Link from 'next/link'
 import ContactForm from '@/components/ContactForm'
 
 export const metadata: Metadata = {
-  title: 'Contact | WagSpeed',
-  description: 'Get in touch with the WagSpeed team. Questions, partnerships, or just curious — we read everything.',
+  title: 'Contact',
+  description: 'Get in touch with the WagSpeed team in the Tri-Cities, WA. Questions, partnerships, or just curious — we read everything.',
+  alternates: { canonical: '/contact' },
+  openGraph: {
+    title: 'Contact WagSpeed',
+    description: 'Get in touch with the WagSpeed team in the Tri-Cities, WA.',
+    url: '/contact',
+    type: 'website',
+    // Defining openGraph here drops the inherited file-convention image,
+    // so point it back at the generated 1200x630 card.
+    images: ['/opengraph-image'],
+  },
   robots: { index: true, follow: true },
 }
 

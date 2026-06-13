@@ -2,8 +2,9 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy | WagSpeed',
+  title: 'Privacy Policy',
   description: 'How WagSpeed collects, uses, and protects your personal information.',
+  alternates: { canonical: '/privacy' },
   robots: { index: true, follow: true },
 }
 
@@ -161,10 +162,22 @@ export default function PrivacyPage() {
 
             <section>
               <h2 className="font-headline-xl text-on-surface uppercase mb-4" style={{ fontSize: '13px', letterSpacing: '0.12em', fontWeight: 700 }}>
-                7. Cookies
+                7. Analytics &amp; Cookies
               </h2>
+              <p className="font-body-md text-on-surface-variant leading-relaxed mb-4">
+                We use Google Analytics to understand how visitors find and use this site so we can improve it. Google Analytics sets cookies and collects standard usage data — such as the pages you view, your approximate location (derived from your IP address, which Google anonymizes), and basic device and browser information. We use this only in aggregate; we do not use it to identify you personally.
+              </p>
+              <p className="font-body-md text-on-surface-variant leading-relaxed mb-4">
+                Google processes this data on our behalf as described in{' '}
+                <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-4 hover:opacity-80 transition-opacity">
+                  Google&rsquo;s Privacy Policy
+                </a>.
+              </p>
               <p className="font-body-md text-on-surface-variant leading-relaxed">
-                This website does not use tracking cookies, advertising pixels, or third-party analytics scripts. We do not build behavioral profiles of visitors.
+                We do not use advertising pixels or sell analytics data, and we do not build individual behavioral profiles of visitors. You can opt out of Google Analytics across all sites by installing the{' '}
+                <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-4 hover:opacity-80 transition-opacity">
+                  Google Analytics Opt-out Browser Add-on
+                </a>, or by blocking cookies in your browser settings.
               </p>
             </section>
 

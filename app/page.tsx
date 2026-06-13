@@ -1,6 +1,33 @@
+import Image from 'next/image'
 import WaitlistForm from '@/components/WaitlistForm'
 import WhyItWorks from '@/components/WhyItWorks'
 import Reveal from '@/components/Reveal'
+import JsonLd from '@/components/JsonLd'
+import { faqSchema } from '@/lib/schema'
+import { SERVICE_CITIES } from '@/lib/site'
+
+const FAQS = [
+  {
+    q: 'What cities does WagSpeed serve?',
+    a: 'WagSpeed is a mobile dog treadmill service for the Tri-Cities, WA — Kennewick, Pasco, Richland, and West Richland. Our van comes to your driveway, so there is no drop-off or commute.',
+  },
+  {
+    q: 'How does the mobile dog treadmill service work?',
+    a: 'Book a session online, our climate-controlled van parks in your driveway, and an experienced handler guides your dog through a custom 30-minute treadmill workout with real, tracked metrics.',
+  },
+  {
+    q: 'Is treadmill exercise safe for my dog?',
+    a: 'Yes. Sessions are run by an experienced handler who sets the pace and load to your dog’s fitness level, inside a climate-controlled environment. The workout builds endurance and core and hindquarter strength at an intensity that is safe and effective.',
+  },
+  {
+    q: 'How long is each session and what does it cost?',
+    a: 'Each session is a full 30 minutes. WagSpeed is launching in the Tri-Cities soon — join the waitlist for launch pricing and to secure your priority spot.',
+  },
+  {
+    q: 'What kind of dogs is WagSpeed for?',
+    a: 'Most healthy dogs benefit, especially high-energy breeds and dogs that need to lose weight or burn off anxious energy. A sustained 30-minute run lowers stress hormones and leaves dogs noticeably calmer for hours.',
+  },
+]
 
 const STEPS = [
   {
@@ -18,7 +45,7 @@ const STEPS = [
   {
     num: '03',
     title: 'Your Dog Trains',
-    body: 'A certified trainer guides a custom treadmill session. Real output. Real metrics.',
+    body: 'An experienced handler guides a custom treadmill session. Real output. Real metrics.',
     cell: 'pt-10 md:pt-0 md:pl-12',
   },
 ]
@@ -70,10 +97,13 @@ export default function HomePage() {
 
           {/* Background — full bleed */}
           <div className="absolute inset-0 z-0 overflow-hidden bg-surface-container-lowest">
-            <img
+            <Image
               src="/van-dogs.jpg"
               alt="Dogs running on a professional treadmill inside the WagSpeed van"
-              className="absolute inset-0 w-full h-full object-cover hero-image-filter"
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover hero-image-filter"
               style={{ objectPosition: '65% center', background: 'black', opacity: 0.45 }}
             />
             {/* Left vignette — dark behind headline text */}
@@ -202,7 +232,7 @@ export default function HomePage() {
               </div>
               <div className="lg:col-span-6">
                 <p className="font-body-lg text-body-lg text-on-surface-variant leading-relaxed max-w-[52ch]">
-                  A professional treadmill, climate control, and a certified trainer on board.
+                  A professional treadmill, climate control, and an experienced handler on board.
                   Your dog walks out the front door and straight into a workout.
                 </p>
               </div>
@@ -212,11 +242,12 @@ export default function HomePage() {
           {/* Full-bleed photo — the one place the image gets seen clean */}
           <Reveal>
             <div className="media-reveal relative w-full overflow-hidden aspect-[5/4] md:aspect-auto md:h-[clamp(340px,62vh,660px)]">
-              <img
+              <Image
                 src="/van-dogs.jpg"
                 alt="Two dogs running on the professional treadmill inside the climate-controlled WagSpeed van"
-                loading="lazy"
-                className="absolute inset-0 w-full h-full object-cover object-center md:object-[65%_center]"
+                fill
+                sizes="100vw"
+                className="object-cover object-center md:object-[65%_center]"
                 style={{ filter: 'saturate(0.95) contrast(1.04)' }}
               />
             </div>
@@ -226,7 +257,90 @@ export default function HomePage() {
         {/* ── Why It Works ──────────────────────────────────── */}
         <WhyItWorks />
 
+        {/* ── Service Area ──────────────────────────────────── */}
+        <section className="w-full bg-surface-container-lowest border-t border-outline-variant">
+          <div className="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop py-16 md:py-20">
+            <Reveal className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20 items-start">
+              <div className="lg:col-span-5 flex flex-col gap-5">
+                <div className="inline-flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 bg-primary rounded-full animate-pulse-dot flex-shrink-0" />
+                  <span className="font-label-caps text-label-caps text-primary uppercase tracking-widest">
+                    Service Area
+                  </span>
+                </div>
+                <h2
+                  className="font-headline-xl text-on-surface uppercase"
+                  style={{ fontSize: 'clamp(32px, 3.5vw, 44px)', lineHeight: 0.95, letterSpacing: '-0.02em', fontWeight: 700 }}
+                >
+                  Bringing the workout to the Tri-Cities.
+                </h2>
+                <p className="font-body-lg text-body-lg text-on-surface-variant leading-relaxed max-w-[52ch]">
+                  WagSpeed is a mobile dog treadmill service launching across the Tri-Cities, WA.
+                  If you live in Kennewick, Pasco, Richland, or West Richland, our van comes
+                  straight to your driveway — no drop-off, no commute.
+                </p>
+              </div>
+              <div className="lg:col-span-7 grid grid-cols-2 gap-px bg-outline-variant border border-outline-variant">
+                {SERVICE_CITIES.map((city) => (
+                  <div key={city} className="bg-surface-container-lowest flex items-center gap-3 px-6 py-7">
+                    <span className="material-symbols-outlined text-primary" style={{ fontSize: '28px', fontVariationSettings: "'FILL' 0, 'wght' 200" }}>
+                      location_on
+                    </span>
+                    <div className="flex flex-col">
+                      <span className="font-headline-lg-mobile text-headline-lg-mobile text-on-surface uppercase">{city}</span>
+                      <span className="font-label-caps text-label-caps text-outline uppercase tracking-wider">Washington</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </Reveal>
+          </div>
+        </section>
+
+        {/* ── FAQ ───────────────────────────────────────────── */}
+        <section className="w-full bg-background border-t border-outline-variant">
+          <div className="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop py-16 md:py-24">
+            <Reveal className="mb-12 flex flex-col gap-5">
+              <div className="inline-flex items-center gap-2">
+                <span className="w-1.5 h-1.5 bg-primary rounded-full animate-pulse-dot flex-shrink-0" />
+                <span className="font-label-caps text-label-caps text-primary uppercase tracking-widest">
+                  FAQ
+                </span>
+              </div>
+              <h2
+                className="font-headline-xl text-on-surface uppercase max-w-2xl"
+                style={{ fontSize: 'clamp(32px, 3.5vw, 44px)', lineHeight: 0.95, letterSpacing: '-0.02em', fontWeight: 700 }}
+              >
+                Questions, answered.
+              </h2>
+            </Reveal>
+            <div className="flex flex-col divide-y divide-outline-variant border-t border-b border-outline-variant">
+              {FAQS.map(({ q, a }, i) => (
+                <Reveal
+                  key={q}
+                  delay={i * 80}
+                  className="grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-8 py-8 md:py-10"
+                >
+                  <div className="md:col-span-5">
+                    <h3 className="font-headline-lg-mobile text-headline-lg-mobile text-on-surface uppercase">
+                      {q}
+                    </h3>
+                  </div>
+                  <div className="md:col-span-7">
+                    <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                      {a}
+                    </p>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+
       </main>
+
+      {/* FAQ structured data */}
+      <JsonLd data={faqSchema(FAQS)} />
 
       {/* ── Footer ───────────────────────────────────────── */}
       <footer className="bg-surface-container-lowest border-t border-outline-variant">
