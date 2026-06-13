@@ -146,7 +146,7 @@ export default function WaitlistForm() {
           Join the Waitlist
         </h2>
         <p className="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">
-          Tri-Cities, WA &mdash; First in line trains first
+          Tri-Cities, WA
         </p>
       </div>
 
@@ -171,7 +171,7 @@ export default function WaitlistForm() {
             Spot #{count.toLocaleString()} locked in.
           </h3>
           <p className="font-body-md text-body-md text-on-surface-variant border-l-2 border-outline-variant pl-4 leading-relaxed">
-            {city} is on our radar. You&rsquo;re #{count.toLocaleString()} in line — we schedule in signup order.
+            {city} is on our radar. You&rsquo;re #{count.toLocaleString()} in line, and we schedule in signup order.
           </p>
           <p className="font-label-caps text-label-caps text-outline uppercase tracking-widest">
             Launch updates will go to your email.

@@ -165,7 +165,7 @@ export default function PrivacyPage() {
                 7. Analytics &amp; Cookies
               </h2>
               <p className="font-body-md text-on-surface-variant leading-relaxed mb-4">
-                We use Google Analytics to understand how visitors find and use this site so we can improve it. Google Analytics sets cookies and collects standard usage data — such as the pages you view, your approximate location (derived from your IP address, which Google anonymizes), and basic device and browser information. We use this only in aggregate; we do not use it to identify you personally.
+                We use Google Analytics to understand how visitors find and use this site so we can improve it. Google Analytics sets cookies and collects standard usage data, such as the pages you view, your approximate location (derived from your IP address, which Google anonymizes), and basic device and browser information. We use this only in aggregate; we do not use it to identify you personally.
               </p>
               <p className="font-body-md text-on-surface-variant leading-relaxed mb-4">
                 Google processes this data on our behalf as described in{' '}

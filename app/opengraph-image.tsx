@@ -3,7 +3,7 @@ import { SITE_NAME, SERVICE_CITIES, REGION } from '@/lib/site'
 
 // Static metadata for the generated social card.
 export const alt =
-  'WagSpeed — mobile dog treadmill service delivered to your driveway in the Tri-Cities, WA'
+  'WagSpeed mobile dog treadmill service delivered to your driveway in the Tri-Cities, WA'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
@@ -112,7 +112,7 @@ export default function OpengraphImage() {
               fontWeight: 600,
             }}
           >
-            {`${SERVICE_CITIES.join('  ·  ')} — ${REGION}`}
+            {`${SERVICE_CITIES.join('  ·  ')}  ·  ${REGION}`}
           </div>
         </div>
       </div>

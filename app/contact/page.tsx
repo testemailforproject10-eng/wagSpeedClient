@@ -4,7 +4,7 @@ import ContactForm from '@/components/ContactForm'
 
 export const metadata: Metadata = {
   title: 'Contact',
-  description: 'Get in touch with the WagSpeed team in the Tri-Cities, WA. Questions, partnerships, or just curious — we read everything.',
+  description: 'Get in touch with the WagSpeed team in the Tri-Cities, WA. Questions, partnerships, or just curious? We read everything.',
   alternates: { canonical: '/contact' },
   openGraph: {
     title: 'Contact WagSpeed',
@@ -17,13 +17,6 @@ export const metadata: Metadata = {
   },
   robots: { index: true, follow: true },
 }
-
-const TOPICS = [
-  'Questions about the service',
-  'Scheduling or availability',
-  'Partnerships or press',
-  'Anything else',
-]
 
 export default function ContactPage() {
   return (
@@ -77,25 +70,8 @@ export default function ContactPage() {
                 </h1>
 
                 <p className="font-body-lg text-on-surface-variant leading-relaxed max-w-sm">
-                  We&rsquo;re a small team and we read every message. Whether you have a question about the service, want to know when we&rsquo;re launching, or just want to say hi — reach out.
+                  We&rsquo;re a small team and we read every message. Whether you have a question about the service, want to know when we&rsquo;re launching, or just want to say hi, reach out anytime.
                 </p>
-              </div>
-
-              {/* What you can reach out about */}
-              <div className="flex flex-col gap-0 border-t border-outline-variant">
-                {TOPICS.map((topic) => (
-                  <div key={topic} className="flex items-center gap-3 py-3.5 border-b border-outline-variant">
-                    <span
-                      className="material-symbols-outlined text-outline flex-shrink-0"
-                      style={{ fontSize: '16px', fontVariationSettings: "'FILL' 0, 'wght' 200" }}
-                    >
-                      arrow_forward
-                    </span>
-                    <span className="font-body-md text-on-surface-variant" style={{ fontSize: '14px' }}>
-                      {topic}
-                    </span>
-                  </div>
-                ))}
               </div>
             </div>
 

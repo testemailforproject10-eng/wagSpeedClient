@@ -126,7 +126,7 @@ export default function TermsPage() {
                 6. Intellectual Property
               </h2>
               <p className="font-body-md text-on-surface-variant leading-relaxed">
-                All content on this website — including text, images, logos, and design — is owned by WagSpeed Performance and may not be reproduced, distributed, or used without our written permission.
+                All content on this website, including text, images, logos, and design, is owned by WagSpeed Performance and may not be reproduced, distributed, or used without our written permission.
               </p>
             </section>
 

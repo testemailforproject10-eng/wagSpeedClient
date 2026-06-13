@@ -25,7 +25,7 @@ const hankenGrotesk = Hanken_Grotesk({
 
 const TITLE_DEFAULT = 'WagSpeed | Mobile Dog Treadmill Service in Tri-Cities, WA'
 const DESCRIPTION =
-  'WagSpeed brings a professional dog treadmill to your driveway in the Tri-Cities — Kennewick, Pasco & Richland, WA. A climate-controlled van and an experienced handler give your dog a real 30-minute workout. Join the waitlist.'
+  'WagSpeed brings a professional dog treadmill to your driveway in the Tri-Cities: Kennewick, Pasco & Richland, WA. A climate-controlled van and an experienced handler give your dog a real 30-minute workout. Join the waitlist.'
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

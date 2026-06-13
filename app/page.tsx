@@ -9,7 +9,7 @@ import { SERVICE_CITIES } from '@/lib/site'
 const FAQS = [
   {
     q: 'What cities does WagSpeed serve?',
-    a: 'WagSpeed is a mobile dog treadmill service for the Tri-Cities, WA — Kennewick, Pasco, Richland, and West Richland. Our van comes to your driveway, so there is no drop-off or commute.',
+    a: 'WagSpeed is a mobile dog treadmill service for the Tri-Cities, WA: Kennewick, Pasco, Richland, and West Richland. Our van comes to your driveway, so there is no drop-off or commute.',
   },
   {
     q: 'How does the mobile dog treadmill service work?',
@@ -21,7 +21,7 @@ const FAQS = [
   },
   {
     q: 'How long is each session and what does it cost?',
-    a: 'Each session is a full 30 minutes. WagSpeed is launching in the Tri-Cities soon — join the waitlist for launch pricing and to secure your priority spot.',
+    a: 'Each session is a full 30 minutes. WagSpeed is launching in the Tri-Cities soon, so join the waitlist for launch pricing and to secure your priority spot.',
   },
   {
     q: 'What kind of dogs is WagSpeed for?',
@@ -33,7 +33,7 @@ const STEPS = [
   {
     num: '01',
     title: 'Book Online',
-    body: 'Schedule a session in seconds. Pick the time that works — we take it from there.',
+    body: 'Schedule a session in seconds. Pick the time that works and we take it from there.',
     cell: 'md:pr-12 pb-10 md:pb-0 border-b border-outline-variant md:border-b-0',
   },
   {
@@ -136,7 +136,7 @@ export default function HomePage() {
 
               {/* Body copy */}
               <p className="animate-fade-up stagger-2 font-body-md text-on-surface-variant max-w-[460px] leading-relaxed" style={{ fontSize: '18px' }}>
-                A mobile van brings a professional treadmill to your driveway. Your dog gets a real workout — without you lifting a finger.
+                A mobile van brings a professional treadmill right to your driveway. Your dog burns off energy and stays healthy, and you never have to lift a finger.
               </p>
 
               {/* Stats strip — large icon + stacked label/value */}
@@ -191,7 +191,7 @@ export default function HomePage() {
                 className="font-headline-xl text-on-surface uppercase max-w-2xl"
                 style={{ fontSize: 'clamp(32px, 3.5vw, 44px)', lineHeight: 0.95, letterSpacing: '-0.02em', fontWeight: 700 }}
               >
-                From your driveway to done in 30 minutes.
+                Three simple steps to a calmer, healthier dog.
               </h2>
             </Reveal>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-0 md:divide-x md:divide-outline-variant">
@@ -277,7 +277,7 @@ export default function HomePage() {
                 <p className="font-body-lg text-body-lg text-on-surface-variant leading-relaxed max-w-[52ch]">
                   WagSpeed is a mobile dog treadmill service launching across the Tri-Cities, WA.
                   If you live in Kennewick, Pasco, Richland, or West Richland, our van comes
-                  straight to your driveway — no drop-off, no commute.
+                  straight to your driveway, with no drop-off and no commute.
                 </p>
               </div>
               <div className="lg:col-span-7 grid grid-cols-2 gap-px bg-outline-variant border border-outline-variant">

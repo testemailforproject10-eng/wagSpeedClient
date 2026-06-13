@@ -3,7 +3,7 @@ import { SITE_NAME } from '@/lib/site'
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: `${SITE_NAME} — Mobile Dog Treadmill Service`,
+    name: `${SITE_NAME}: Mobile Dog Treadmill Service`,
     short_name: SITE_NAME,
     description:
       'A mobile van brings a professional dog treadmill and an experienced handler to your driveway in the Tri-Cities, WA.',

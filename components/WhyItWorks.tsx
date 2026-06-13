@@ -4,17 +4,17 @@ const pillars = [
   {
     num: '01',
     title: 'Real endurance, real results',
-    body: 'When your dog runs at a steady pace for a full 30 minutes, their body actually has to work. That sustained effort is what builds real endurance — and what leaves them satisfied and settled, not just a little winded. You\'ll notice the difference the moment they walk back in the door.',
+    body: 'When your dog runs at a steady pace for a full 30 minutes, their body actually has to work. That sustained effort is what builds real endurance, and what leaves them satisfied and settled, not just a little winded. You\'ll notice the difference the moment they walk back in the door.',
   },
   {
     num: '02',
     title: 'Stronger body, better movement',
-    body: 'A treadmill belt works muscles that regular walks don\'t fully reach — especially the hindquarters and core. Over time, sessions build balanced strength across the whole body. Stronger dogs move better, recover faster, and hold up better as they age.',
+    body: 'A treadmill belt works muscles that regular walks don\'t fully reach, especially the hindquarters and core. Over time, sessions build balanced strength across the whole body. Stronger dogs move better, recover faster, and hold up better as they age.',
   },
   {
     num: '03',
     title: 'Calmer behavior that actually lasts',
-    body: 'Sustained running triggers a real stress-relief response in dogs — the same one that makes humans feel better after a solid workout. One 30-minute session measurably lowers stress hormones and leaves most dogs noticeably calmer for hours. Regular sessions compound that: less barking, less anxiety, less destruction.',
+    body: 'Sustained running triggers a real stress-relief response in dogs, the same one that makes humans feel better after a solid workout. One 30-minute session measurably lowers stress hormones and leaves most dogs noticeably calmer for hours. Regular sessions compound that: less barking, less anxiety, less destruction.',
   },
 ]
 
@@ -65,13 +65,13 @@ export default function WhyItWorks() {
           {/* Right: body copy */}
           <Reveal delay={140} className="lg:col-span-7 flex flex-col gap-5 lg:pt-1">
             <p className="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
-              Most dogs aren&rsquo;t getting enough real exercise. A walk around the block gets them moving, but it doesn&rsquo;t wear them out. The kind of exercise that actually changes behavior &mdash; calmer at home, less reactive on the leash, deeper sleep at night &mdash; requires sustained effort at the right intensity for long enough to matter.
+              Most dogs aren&rsquo;t getting enough real exercise. A walk around the block gets them moving, but it doesn&rsquo;t wear them out. The kind of exercise that actually changes behavior (calmer at home, less reactive on the leash, deeper sleep at night) requires sustained effort at the right intensity for long enough to matter.
             </p>
             <p className="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
-              A study of over 11,000 dogs found that dogs who get regular vigorous exercise are significantly calmer, less anxious, and better behaved at home. The reason is straightforward: sustained running triggers a real stress-relief response. A 30-minute session doesn&rsquo;t just tire them out &mdash; it resets them.
+              A study of over 11,000 dogs found that dogs who get regular vigorous exercise are significantly calmer, less anxious, and better behaved at home. The reason is straightforward: sustained running triggers a real stress-relief response. A 30-minute session doesn&rsquo;t just tire them out. It resets them.
             </p>
             <p className="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
-              WagSpeed sessions are built around exactly this kind of exercise. Consistent pace, full 30 minutes, and a load that grows with your dog&rsquo;s fitness over time. Not a stroll &mdash; a workout.
+              WagSpeed sessions are built around exactly this kind of exercise. Consistent pace, full 30 minutes, and a load that grows with your dog&rsquo;s fitness over time. Not a stroll. A workout.
             </p>
           </Reveal>
 
