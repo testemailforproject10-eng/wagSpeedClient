@@ -12,6 +12,8 @@ export async function POST(req: NextRequest) {
     phone?: string
     dog_count?: string
     city?: string
+    preferred_day?: string | null
+    preferred_time?: string | null
   }
 
   try {
@@ -22,9 +24,11 @@ export async function POST(req: NextRequest) {
 
   const name      = body.name?.trim() ?? null
   const email     = body.email?.toLowerCase().trim()
-  const phone     = body.phone?.trim() ?? null
+  const phone     = body.phone?.trim()
   const dog_count = body.dog_count?.trim() ?? null
   const city      = body.city?.trim() ?? null
+  const preferred_day  = body.preferred_day?.trim() || null
+  const preferred_time = body.preferred_time?.trim() || null
 
   if (!email || !EMAIL_REGEX.test(email)) {
     return NextResponse.json(
@@ -33,7 +37,7 @@ export async function POST(req: NextRequest) {
     )
   }
 
-  if (phone && !PHONE_REGEX.test(phone)) {
+  if (!phone || !PHONE_REGEX.test(phone)) {
     return NextResponse.json(
       { error: 'Please enter a valid phone number.' },
       { status: 400 }
@@ -51,7 +55,7 @@ export async function POST(req: NextRequest) {
     )
   }
 
-  const record: WaitlistInsert = { name, email, phone, dog_count, city }
+  const record: WaitlistInsert = { name, email, phone, dog_count, city, preferred_day, preferred_time }
 
   const { error: insertError } = await supabase
     .from('waitlist')

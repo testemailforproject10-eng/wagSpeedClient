@@ -129,6 +129,46 @@ select.industrial-input option {
   color: #e0e2e9;
 }
 
+/* ─── Chip toggle (preferred time) ────────────────────── */
+.chip-toggle {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 11px;
+  color: rgba(255, 255, 255, 0.68);
+  font-family: var(--font-hanken-grotesk), sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 10px 8px;
+  width: 100%;
+  cursor: pointer;
+  transition: border-color 0.2s cubic-bezier(0.19, 1, 0.22, 1),
+              background-color 0.2s cubic-bezier(0.19, 1, 0.22, 1),
+              color 0.2s cubic-bezier(0.19, 1, 0.22, 1),
+              transform 0.15s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.chip-toggle:hover:not(:disabled) {
+  border-color: rgba(255, 255, 255, 0.32);
+  color: #e0e2e9;
+}
+
+.chip-toggle[aria-pressed='true'] {
+  background-color: rgba(255, 255, 255, 0.92);
+  border-color: rgba(255, 255, 255, 0.92);
+  color: #0d0f12;
+}
+
+.chip-toggle:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.chip-toggle:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
 
 /* ─── Animations ──────────────────────────────────────── */
 @keyframes fadeUp {

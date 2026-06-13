@@ -17,6 +17,8 @@ export interface Database {
           phone: string | null
           dog_count: string | null
           city: string | null
+          preferred_day: string | null
+          preferred_time: string | null
           created_at: string
         }
         Insert: {
@@ -25,6 +27,8 @@ export interface Database {
           phone?: string | null
           dog_count?: string | null
           city?: string | null
+          preferred_day?: string | null
+          preferred_time?: string | null
           created_at?: string
         }
         Update: {
@@ -33,6 +37,8 @@ export interface Database {
           phone?: string | null
           dog_count?: string | null
           city?: string | null
+          preferred_day?: string | null
+          preferred_time?: string | null
           created_at?: string
         }
         Relationships: []

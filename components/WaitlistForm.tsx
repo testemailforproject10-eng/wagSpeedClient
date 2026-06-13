@@ -7,12 +7,62 @@ type FormStatus = 'idle' | 'loading' | 'success' | 'error' | 'duplicate'
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 const PHONE_REGEX = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/
 
+const DAY_OPTIONS  = ['Weekdays', 'Weekends', 'Either'] as const
+const TIME_OPTIONS = ['Morning', 'Afternoon', 'Either'] as const
+
+function ChipGroup({
+  label,
+  legend,
+  options,
+  value,
+  onChange,
+  disabled,
+}: {
+  label: string
+  legend: string
+  options: readonly string[]
+  value: string
+  onChange: (next: string) => void
+  disabled: boolean
+}) {
+  return (
+    <div role="group" aria-label={legend} className="flex items-center gap-3">
+      <span
+        className="w-10 flex-shrink-0 uppercase text-on-surface-variant"
+        style={{ fontFamily: 'var(--font-hanken-grotesk)', fontSize: '10px', letterSpacing: '0.14em', fontWeight: 700 }}
+      >
+        {label}
+      </span>
+      <div className="grid grid-cols-3 gap-2 flex-1">
+      {options.map((opt) => {
+        const selected = value === opt
+        return (
+          <button
+            key={opt}
+            type="button"
+            aria-pressed={selected}
+            disabled={disabled}
+            // Tap a selected chip again to clear it — the whole block is optional
+            onClick={() => onChange(selected ? '' : opt)}
+            className="chip-toggle"
+          >
+            {opt}
+          </button>
+        )
+      })}
+      </div>
+    </div>
+  )
+}
+
 export default function WaitlistForm() {
   const [name, setName]         = useState('')
   const [email, setEmail]       = useState('')
   const [phone, setPhone]       = useState('')
   const [dogCount, setDogCount] = useState('')
   const [city, setCity]         = useState('')
+  const [prefDay, setPrefDay]   = useState('')
+  const [prefTime, setPrefTime] = useState('')
   const [status, setStatus]     = useState<FormStatus>('idle')
   const [errorMessage, setErrorMessage] = useState('')
   const [count, setCount]       = useState(0)
@@ -20,13 +70,14 @@ export default function WaitlistForm() {
 
   const nameRef  = useRef<HTMLInputElement>(null)
   const emailRef = useRef<HTMLInputElement>(null)
+  const phoneRef = useRef<HTMLInputElement>(null)
 
   const isValidEmail = EMAIL_REGEX.test(email)
-  const isValidPhone = phone === '' || PHONE_REGEX.test(phone)
+  const isValidPhone = PHONE_REGEX.test(phone)
 
   const showNameError  = touched && !name.trim()
   const showEmailError = touched && email.length > 0 && !isValidEmail
-  const showPhoneError = touched && phone.length > 0 && !isValidPhone
+  const showPhoneError = touched && !isValidPhone
   const showDogError   = touched && !dogCount
   const showCityError  = touched && !city
 
@@ -38,6 +89,7 @@ export default function WaitlistForm() {
       if (!name.trim() || !isValidEmail || !isValidPhone || !dogCount || !city) {
         if (!name.trim()) nameRef.current?.focus()
         else if (!isValidEmail) emailRef.current?.focus()
+        else if (!isValidPhone) phoneRef.current?.focus()
         return
       }
 
@@ -51,9 +103,11 @@ export default function WaitlistForm() {
           body: JSON.stringify({
             name:      name.trim(),
             email,
-            phone:     phone.trim() || null,
+            phone:     phone.trim(),
             dog_count: dogCount,
             city,
+            preferred_day:  prefDay || null,
+            preferred_time: prefTime || null,
           }),
         })
 
@@ -76,7 +130,7 @@ export default function WaitlistForm() {
         setErrorMessage('Network error. Check your connection and try again.')
       }
     },
-    [name, email, phone, dogCount, city, isValidEmail, isValidPhone]
+    [name, email, phone, dogCount, city, prefDay, prefTime, isValidEmail, isValidPhone]
   )
 
   return (
@@ -206,11 +260,12 @@ export default function WaitlistForm() {
           <div className="flex flex-col gap-1.5">
             <label htmlFor="phone" className="sr-only">Phone Number</label>
             <input
+              ref={phoneRef}
               id="phone"
               type="tel"
               name="phone"
               autoComplete="tel"
-              placeholder="Phone Number (optional)"
+              placeholder="Phone Number"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               onBlur={() => setTouched(true)}
@@ -221,7 +276,7 @@ export default function WaitlistForm() {
             />
             {showPhoneError && (
               <p id="phone-error" role="alert" className="font-label-caps text-label-caps text-error">
-                Enter a valid phone number.
+                {phone.trim() ? 'Enter a valid phone number.' : 'Phone number is required.'}
               </p>
             )}
           </div>
@@ -268,6 +323,29 @@ export default function WaitlistForm() {
             {showCityError && (
               <p role="alert" className="font-label-caps text-label-caps text-error">Required.</p>
             )}
+          </div>
+
+          {/* Preferred time — optional demand signal for route planning */}
+          <div className="flex flex-col gap-2.5 pt-1">
+            <span className="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">
+              Preferred Schedule <span className="text-outline">(Optional)</span>
+            </span>
+            <ChipGroup
+              label="Day"
+              legend="Preferred day"
+              options={DAY_OPTIONS}
+              value={prefDay}
+              onChange={setPrefDay}
+              disabled={status === 'loading'}
+            />
+            <ChipGroup
+              label="Time"
+              legend="Preferred time of day"
+              options={TIME_OPTIONS}
+              value={prefTime}
+              onChange={setPrefTime}
+              disabled={status === 'loading'}
+            />
           </div>
 
           {/* Submit */}
